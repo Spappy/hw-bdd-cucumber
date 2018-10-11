@@ -53,12 +53,10 @@ end
 
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
-  |movies_table|
-  movies_table.hashes.each do |movie|
-    if page.respond_to? :should
-      page.should have_content(movie.values[0])
-    else
-      assert page.has_content?(movie.values[0])
-    end
+  movies = Movie.all
+  movie_titles = movies.map{|x| x.title}
+  
+  movie_titles.each do |movie|
+    step %Q{I should see "#{movie}"}
   end
 end
