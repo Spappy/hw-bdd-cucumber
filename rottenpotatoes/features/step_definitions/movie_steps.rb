@@ -54,7 +54,7 @@ end
 Then /I should see all the movies/ do
   # Make sure that all the movies in the app are visible in the table
   movies = Movie.all
-  movie_titles = movies.map{|x| x.title}
+  movie_titles = movies.map{|movie| movie.title}
   
   movie_titles.each do |movie|
     step %Q{I should see "#{movie}"}
